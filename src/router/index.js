@@ -33,5 +33,5 @@ const routes = [
 
 export default new VueRoute({
   routes,
-  // mode: 'history'
+  mode: 'history'
 })
