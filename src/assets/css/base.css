@@ -1,9 +1,7 @@
 @import "./normalize.css";
 
-/*:root -> 获取根元素就是HTML标签*/
-
+/*:root -> 获取根元素html*/
 :root {
-  /*定义变量*/
   --color-text: #666;
   --color-high-text: #ff5777;
   --color-tint: #ff8198;

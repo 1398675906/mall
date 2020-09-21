@@ -57,5 +57,4 @@
     vertical-align: middle;
     margin-bottom: 2px;
   }
-	
 </style>
