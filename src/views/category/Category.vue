@@ -127,7 +127,7 @@
     mounted() {
       this.scroll = new BScroll(this.$refs.aaaa, {
         // probeType: 3,
-        // pullUpLoad: true
+        pullUpLoad: true
       })
 
       this.scroll.on('scroll', (position) => {
@@ -145,7 +145,8 @@
       divClick() {
         console.log('divClick');
       }
-    }
+    },
+
   }
 </script>
 

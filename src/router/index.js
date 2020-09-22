@@ -33,13 +33,16 @@ const routes = [
     component: Profile
   },
   {
-    path: '/detail/:iid',
+    path: '/detail',
     component: Detail
   }
 ]
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  mode: 'hash'
+  //如果使用的是history，那么需要后端进行配置。 详情页会刷新不了
+  // mode: 'history'
+
 })
 
 

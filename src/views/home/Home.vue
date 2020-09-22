@@ -35,8 +35,9 @@
   import BackTop from 'components/content/backTop/BackTop'
 
   import { getHomeMultidata, getHomeGoods } from "network/home"
-  import {debounce} from "common/utils";
+  import {itemListenerMinxin} from 'common/mixin'
 
+  import {debounce} from "common/utils";
   export default {
     name: "Home",
     components: {
@@ -49,6 +50,7 @@
       Scroll,
       BackTop
     },
+    mixins:[itemListenerMinxin],//混入
     data() {
       return {
         banners: [],
@@ -74,11 +76,20 @@
       console.log('home destroyed');
     },
     activated() {
-      this.$refs.scroll.scrollTo(0, this.saveY, 0)
+      // console.log(this.$refs.scroll.scroll.maxScrollY)
+      //必须刷新一下
       this.$refs.scroll.refresh()
+      // 设置位置
+      this.$refs.scroll.scrollTo(0, this.saveY, 0)
+
     },
     deactivated() {
+
+      //记录位置
       this.saveY = this.$refs.scroll.getScrollY()
+
+    //  2.取消全局事件的监听
+      this.$bus.$off('itemImageLoad',this.itemLister)
     },
     created() {
       // 1.请求多个数据
@@ -90,11 +101,15 @@
       this.getHomeGoods('sell')
     },
     mounted() {
-      // 1.图片加载完成的事件监听
+
+//      这里我用了mix in混入就不用写了
+/*      // 1.图片加载完成的事件监听
       const refresh = debounce(this.$refs.scroll.refresh, 50)
-      this.$bus.$on('itemImageLoad', () => {
+      //对我们监听的时间进行保存
+      this.itemLister = () => {
         refresh()
-      })
+      }
+      this.$bus.$on('itemImageLoad', this.itemLister)*/
     },
     methods: {
       /**
