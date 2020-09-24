@@ -5,6 +5,7 @@ export function debounce(func, delay) {
     timer = setTimeout(() => {
       func.apply(this, args)
     }, delay)
+
   }
 }
 
